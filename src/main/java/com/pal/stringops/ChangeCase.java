@@ -1,4 +1,4 @@
-package javaexs.stringops;
+package com.pal.stringops;
 
 public class ChangeCase {
 

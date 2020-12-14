@@ -1,4 +1,4 @@
-package javaexs.intops;
+package com.pal.intops;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package javaexs.intops;
+package com.pal.intops;
 
 public class FibonacciNumbers {
 
