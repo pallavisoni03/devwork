@@ -25,19 +25,33 @@ public class AppTest
         Assertions.assertTrue( true );
     }
     
-    //@DisplayName("Should calculate the correct sum")
-    //@ParameterizedTest
-    //@MethodSource("stringArrayProvider")
-    //void parseFirstAndSecondInt(String[] args) {
-        //Arguments arguments = new Arguments(args);
+    @DisplayName("Should calculate the correct sum")
+    @ParameterizedTest
+    @MethodSource("stringArrayProvider")
+    void parseFirstAndSecondInt(int[] input, int expected) {
+        int sum = 0;
+        for (int i=0; i< input.length; i++) {
+            sum = sum + input[i];
+        }
 
-        //assertEquals(1, arguments.getFirst());
-        //assertEquals(2, arguments.getSecond());
-    //}
+        Assertions.assertEquals(sum, expected);
+    }
     
-    static Stream<String[]> stringArrayProvider() {
+    static Stream<Arguments> stringArrayProvider() {
         return Stream.of(
-                new String[]{"1", "2"},
-                new String[]{"1", "2", "3"});
+                Arguments.of(new int[]{1, 2, 2}, 5),
+                Arguments.of(new int[]{1, 2}, 3));
+                //new Arg(new int[]{1, 2, 2}, 5),
+                //new Arg(new int[]{1}, 3));
+    }
+}
+
+class Arg {
+    int[] inputs;
+    int expected;
+
+    public Arg(int[] inputs, int expected) {
+        this.inputs = inputs;
+        this.expected = expected;
     }
 }
