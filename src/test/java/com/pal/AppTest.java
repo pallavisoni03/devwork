@@ -16,19 +16,10 @@ import org.junit.jupiter.params.provider.ValueSource;
  */
 public class AppTest 
 {
-    /**
-     * Rigorous Test :-)
-     */
-    @Test
-    public void shouldAnswerWithTrue()
-    {
-        Assertions.assertTrue( true );
-    }
-    
-    @DisplayName("Should calculate the correct sum")
+    @DisplayName("Name of the test goes here")
     @ParameterizedTest
-    @MethodSource("stringArrayProvider")
-    void parseFirstAndSecondInt(int[] input, int expected) {
+    @MethodSource("inputProvider")
+    void sumOfIntArray(int[] input, int expected) {
         int sum = 0;
         for (int i=0; i< input.length; i++) {
             sum = sum + input[i];
@@ -37,21 +28,9 @@ public class AppTest
         Assertions.assertEquals(sum, expected);
     }
     
-    static Stream<Arguments> stringArrayProvider() {
+    static Stream<Arguments> inputProvider() {
         return Stream.of(
                 Arguments.of(new int[]{1, 2, 2}, 5),
                 Arguments.of(new int[]{1, 2}, 3));
-                //new Arg(new int[]{1, 2, 2}, 5),
-                //new Arg(new int[]{1}, 3));
-    }
-}
-
-class Arg {
-    int[] inputs;
-    int expected;
-
-    public Arg(int[] inputs, int expected) {
-        this.inputs = inputs;
-        this.expected = expected;
     }
 }
