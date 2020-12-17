@@ -11,26 +11,70 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import com.pal.intops.CreateTargetArray;
+import com.pal.intops.ReduceNumberToZero;
+import com.pal.stringops.ChangeCase;
+
 /**
  * Unit test for simple App.
  */
-public class AppTest 
+public class AppTest
 {
-    @DisplayName("Name of the test goes here")
+    @DisplayName("Change case test")
     @ParameterizedTest
-    @MethodSource("inputProvider")
-    void sumOfIntArray(int[] input, int expected) {
-        int sum = 0;
-        for (int i=0; i< input.length; i++) {
-            sum = sum + input[i];
-        }
-
-        Assertions.assertEquals(sum, expected);
+    @MethodSource("changeCaseInput")
+    void testChangeCase(String input, String expectedOutput) {
+    	ChangeCase changeCase = new ChangeCase();
+    	String actualOutput = changeCase.changeStrCase(input);
+    	Assertions.assertEquals(expectedOutput, actualOutput);
+    	
+    	
+    }
+    static Stream<Arguments> changeCaseInput() {
+    	return Stream.of(
+    			Arguments.of("LOWER", "lower"),
+    			Arguments.of("lower", "lower"),
+    			Arguments.of("Lower", "lower")
+    			);
+    	
     }
     
-    static Stream<Arguments> inputProvider() {
-        return Stream.of(
-                Arguments.of(new int[]{1, 2, 2}, 5),
-                Arguments.of(new int[]{1, 2}, 3));
+   
+    @DisplayName("Reduce Number To Zero")
+    @ParameterizedTest
+    @MethodSource("numberOfStepsInput")
+    void testnumberOfSteps(int input, int expectedOutput) {
+    	//ReduceNumberToZero reduceNotoZero = new ReduceNumberToZero();
+		int actualOutput = ReduceNumberToZero.numberOfSteps(input);
+        Assertions.assertEquals(expectedOutput, actualOutput);
     }
+    
+    static Stream<Arguments> numberOfStepsInput() {
+    	return Stream.of(
+    			Arguments.of(123, 12),
+    			Arguments.of(8, 4),
+    			Arguments.of(14, 6)
+    			);
+    }
+    
+    
+    @DisplayName("Change Target Array")
+    @ParameterizedTest
+    @MethodSource("createTargetArrayInput")
+    void testCreateTargetArray(int[] input,int[] index, int[] expectedOutput) {
+    	CreateTargetArray createTargetArray = new CreateTargetArray();
+		int[] actualOutput = createTargetArray.createTargetArray(input, index);
+        Assertions.assertArrayEquals(expectedOutput, actualOutput);
+    }
+    
+    static Stream<Arguments> createTargetArrayInput() {
+    	return Stream.of(
+    			Arguments.of(new int[]{0,1,2,3,4},new int[]{0,1,2,2,1}, new int[]{0,4,1,3,2}),
+    			Arguments.of(new int[]{1,2,3,4,0},new int[]{0,1,2,3,0}, new int[]{0,1,2,3,4}),
+    			Arguments.of(new int[]{1}, new int[]{0}, new int[] {1})
+    			);
+    }
+    
+    
+    
 }
