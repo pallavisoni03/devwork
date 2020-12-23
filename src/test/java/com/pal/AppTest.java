@@ -1,5 +1,8 @@
 package com.pal;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Assertions;
@@ -11,12 +14,15 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import com.pal.intops.ConvertLLBinaryNumber;
 import com.pal.intops.CreateTargetArray;
+import com.pal.intops.GreatestNumberoFCandies;
 import com.pal.intops.ReduceNumberToZero;
 import com.pal.stringops.ChangeCase;
 import com.pal.stringops.MaximumNestingDepth;
 import com.pal.stringops.ShuffleString;
 import com.pal.stringops.SplitBalancedStrings;
+import com.pal.utils.ListNode;
 
 /**
  * Unit test for simple App.
@@ -137,5 +143,68 @@ public class AppTest
     	
    }
    
+    
+	
+	@DisplayName("Convert LL Binary Number")
+
+	@ParameterizedTest
+
+	@MethodSource("getDecimalValue")
+	void testGetDecimalValue(ListNode input, int expectedOutput) {
+		ConvertLLBinaryNumber convertLLBinaryNumber = new ConvertLLBinaryNumber();
+		int actualOutput = convertLLBinaryNumber.getDecimalValue(input);
+		Assertions.assertEquals(expectedOutput, actualOutput);
+		
+		ListNode n = (new ListNode());
+	}
+
+	static
+	  Stream<Arguments> getDecimalValue() { 
+		return Stream.of( 
+					Arguments.of(convertArrayToList(new int[]{1,0,1}),5),
+					Arguments.of(convertArrayToList(new int[]{0}),0),
+					Arguments.of(convertArrayToList(new int[]{1}),1),
+					Arguments.of(convertArrayToList(new int[]{1,0,0,1,0,0,1,1,1,0,0,0,0,0,0}),18880),
+					Arguments.of(convertArrayToList(new int[]{0,0}),0)
+					);
+	  
+	  }
+	 
+	 @DisplayName("Greatest Number oF Candies")
+	    @ParameterizedTest
+	    @MethodSource("kidsWithCandies")
+	    void testKidsWithCandies(int[] input, int extraInput, List<Boolean> expectedOutput) {
+		 GreatestNumberoFCandies greatestNumberoFCandies = new GreatestNumberoFCandies();
+	    	List<Boolean> actualOutput = greatestNumberoFCandies.kidsWithCandies(input, extraInput);
+	    	Assertions.assertEquals(expectedOutput, actualOutput);    	
+	    }
+	    static Stream<Arguments> kidsWithCandies() {
+	    	return Stream.of(
+	    			Arguments.of(new int[]{7,2,5,6,9,9,4,5},3,Arrays.asList(new Boolean[] {true,false,false,true,true,true,false,false})),
+	    			Arguments.of(new int[]{2,3,5,1,3},3,Arrays.asList(new Boolean[] {true,true,true,false,true})),
+	    			Arguments.of(new int[]{4,2,1,1,2},1,Arrays.asList(new Boolean[] {true,false,false,false,false})),
+	    			Arguments.of(new int[]{12,1,12},10,Arrays.asList(new Boolean[] {true,false,true}))
+	    			);
+	    	
+	   }
+	    
+	    
+	// Util Methods 
+	    public static ListNode convertArrayToList(int[] input){
+			ListNode head = null;
+			ListNode ln = null;
+			//for(int i=1; i<=input.length; i++) {
+			for(int value : input) {
+				if(head==null) {
+					head = new ListNode(input[0]);
+					ln = head;
+				 }else {
+					 ln.next = new ListNode(value);
+					 ln = ln.next;
+				 }
+				
+			}
+			return head;
+		}    
     
 }
