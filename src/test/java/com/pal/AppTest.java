@@ -16,7 +16,9 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import com.pal.intops.ConvertLLBinaryNumber;
 import com.pal.intops.CreateTargetArray;
+import com.pal.intops.EvenNumberOfDigits;
 import com.pal.intops.GreatestNumberoFCandies;
+import com.pal.intops.NumberOfGoodPairs;
 import com.pal.intops.ReduceNumberToZero;
 import com.pal.stringops.ChangeCase;
 import com.pal.stringops.MaximumNestingDepth;
@@ -146,16 +148,12 @@ public class AppTest
     
 	
 	@DisplayName("Convert LL Binary Number")
-
 	@ParameterizedTest
-
 	@MethodSource("getDecimalValue")
 	void testGetDecimalValue(ListNode input, int expectedOutput) {
 		ConvertLLBinaryNumber convertLLBinaryNumber = new ConvertLLBinaryNumber();
 		int actualOutput = convertLLBinaryNumber.getDecimalValue(input);
 		Assertions.assertEquals(expectedOutput, actualOutput);
-		
-		ListNode n = (new ListNode());
 	}
 
 	static
@@ -167,7 +165,6 @@ public class AppTest
 					Arguments.of(convertArrayToList(new int[]{1,0,0,1,0,0,1,1,1,0,0,0,0,0,0}),18880),
 					Arguments.of(convertArrayToList(new int[]{0,0}),0)
 					);
-	  
 	  }
 	 
 	 @DisplayName("Greatest Number oF Candies")
@@ -188,6 +185,38 @@ public class AppTest
 	    	
 	   }
 	    
+	    @DisplayName("Number Of Good Pairs")
+		@ParameterizedTest
+		@MethodSource("numIdenticalPairs")
+		void testNumIdenticalPairs(int[] input, int expectedOutput) {
+	    	NumberOfGoodPairs numberOfGoodPairs = new NumberOfGoodPairs();
+			int actualOutput = numberOfGoodPairs.numIdenticalPairs(input);
+			Assertions.assertEquals(expectedOutput, actualOutput);
+		}
+	    static
+		  Stream<Arguments> numIdenticalPairs() { 
+			return Stream.of( 
+						Arguments.of(new int[]{1,2,3,1,1,3},4),
+						Arguments.of(new int[]{1,1,1,1},6),
+						Arguments.of(new int[]{1,2,3},0)
+						);
+		  }    
+	    
+	    @DisplayName("Even Number Of Digits")
+		@ParameterizedTest
+		@MethodSource("findNumbers")
+		void testFindNumbers(int[] input, int expectedOutput) {
+	    	EvenNumberOfDigits evenNumberOfDigits = new EvenNumberOfDigits();
+			int actualOutput = evenNumberOfDigits.findNumbers(input);
+			Assertions.assertEquals(expectedOutput, actualOutput);
+		}
+	    static
+		  Stream<Arguments> findNumbers() { 
+			return Stream.of( 
+						Arguments.of(new int[]{12,345,2,6,7896},2),
+						Arguments.of(new int[]{555,901,482,1771},1)
+						);
+		  }        
 	    
 	// Util Methods 
 	    public static ListNode convertArrayToList(int[] input){
