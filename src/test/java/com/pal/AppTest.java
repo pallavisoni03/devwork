@@ -20,6 +20,7 @@ import com.pal.intops.CountConsistentStrings;
 import com.pal.intops.CreateTargetArray;
 import com.pal.intops.DecompressEncodedList;
 import com.pal.intops.DesignParkingSystem;
+import com.pal.intops.DiffProductSumofDigits;
 import com.pal.intops.EvenNumberOfDigits;
 import com.pal.intops.GreatestNumberoFCandies;
 import com.pal.intops.NumberOfGoodPairs;
@@ -323,6 +324,22 @@ public class AppTest
 	    			);
 	   }
 	    
+
+	    @DisplayName("Diff Product Sum of Digits")
+	    @ParameterizedTest
+	    @MethodSource("subtractProductAndSum")
+	    void testSubtractProductAndSum(int input, int expectedOutput) {
+	    	DiffProductSumofDigits diffProductSumofDigits = new DiffProductSumofDigits();
+	    	int actualOutput = diffProductSumofDigits.subtractProductAndSum(input);
+	    	Assertions.assertEquals(expectedOutput, actualOutput);    	
+	    }
+	    static Stream<Arguments> subtractProductAndSum() {
+	    	return Stream.of(
+	    			Arguments.of(234, 15),
+	    			Arguments.of(4421, 21),
+	    			Arguments.of(114, -2)
+	    			);
+	   }
 	    
 	// Util Methods 
 	    public static ListNode convertArrayToList(int[] input){
