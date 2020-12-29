@@ -23,6 +23,8 @@ import com.pal.intops.DesignParkingSystem;
 import com.pal.intops.DiffProductSumofDigits;
 import com.pal.intops.EvenNumberOfDigits;
 import com.pal.intops.GreatestNumberoFCandies;
+import com.pal.intops.HammingDistance;
+import com.pal.intops.Maximum69Number;
 import com.pal.intops.NumberOfGoodPairs;
 import com.pal.intops.ReduceNumberToZero;
 import com.pal.stringops.ChangeCase;
@@ -338,6 +340,35 @@ public class AppTest
 	    			Arguments.of(234, 15),
 	    			Arguments.of(4421, 21),
 	    			Arguments.of(114, -2)
+	    			);
+	   }
+	    
+	    @DisplayName("Maximum 69 Number")
+	    @ParameterizedTest
+	    @MethodSource("maximum69Number")
+	    void testMaximum69Number(int input, int expectedOutput) {
+	    	Maximum69Number maximum69Number = new Maximum69Number();
+	    	int actualOutput = maximum69Number.maximum69Number(input);
+	    	Assertions.assertEquals(expectedOutput, actualOutput);    	
+	    }
+	    static Stream<Arguments> maximum69Number() {
+	    	return Stream.of(
+	    			Arguments.of(9669, 9969),
+	    			Arguments.of(9996, 9999)
+	    			);
+	   }
+	    
+	    @DisplayName("Hamming Distance")
+	    @ParameterizedTest
+	    @MethodSource("hammingDistance")
+	    void testHammingDistance(int input, int input2, int expectedOutput) {
+	    	HammingDistance hammingDistance = new HammingDistance();
+	    	int actualOutput = hammingDistance.hammingDistance(input, input2);
+	    	Assertions.assertEquals(expectedOutput, actualOutput);    	
+	    }
+	    static Stream<Arguments> hammingDistance() {
+	    	return Stream.of(
+	    			Arguments.of(1, 4, 2)
 	    			);
 	   }
 	    

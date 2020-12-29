@@ -14,7 +14,7 @@ public class ArrayXOROperation {
 		int intXOR = 0;
 		int tempNum = 0; 
 		for(int i=0; i<n; i++) {
-			tempNum =  start + 2*i;;
+			tempNum =  start + 2*i;
 			intXOR = intXOR ^ tempNum;
 			tempNum = 0;
 		}
