@@ -24,11 +24,16 @@ import com.pal.intops.DiffProductSumofDigits;
 import com.pal.intops.EvenNumberOfDigits;
 import com.pal.intops.GreatestNumberoFCandies;
 import com.pal.intops.HammingDistance;
+import com.pal.intops.IncreasingDecreasingString;
 import com.pal.intops.Maximum69Number;
 import com.pal.intops.NumberOfGoodPairs;
 import com.pal.intops.ReduceNumberToZero;
+import com.pal.intops.ReplaceGreatestElement;
+import com.pal.intops.SelfDividingNumbers;
+import com.pal.intops.SortArrayByParity;
 import com.pal.stringops.ChangeCase;
 import com.pal.stringops.DetermineAlikeStringHalves;
+import com.pal.stringops.FindPrefixInSentence;
 import com.pal.stringops.MaximumNestingDepth;
 import com.pal.stringops.ShuffleString;
 import com.pal.stringops.SplitBalancedStrings;
@@ -372,11 +377,92 @@ public class AppTest
 	    			);
 	   }
 	    
+	    @DisplayName("Self Dividing Numbers")
+	    @ParameterizedTest
+	    @MethodSource("selfDividingNumbers")
+	    void testHammingDistance(int input, int input2, List<Integer> expectedOutput) {
+	    	SelfDividingNumbers selfDividingNumbers = new SelfDividingNumbers();
+	    	List<Integer> actualOutput = selfDividingNumbers.selfDividingNumbers(input, input2);
+	    	Assertions.assertEquals(expectedOutput, actualOutput);    	
+	    }
+	    static Stream<Arguments> selfDividingNumbers() {
+	    	return Stream.of(
+	    			Arguments.of(1, 22, convertArrayToArrayList(new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 15, 22}))
+	    			);
+	   }
+	    
+	    @DisplayName("Increasing Decreasing String")
+	    @ParameterizedTest
+	    @MethodSource("sortString")
+	    void testSortString(String input, String expectedOutput) {
+	    	IncreasingDecreasingString increasingDecreasingString = new IncreasingDecreasingString();
+	    	String actualOutput = increasingDecreasingString.sortString(input);
+	    	Assertions.assertEquals(expectedOutput, actualOutput);    	
+	    }
+	    static Stream<Arguments> sortString() {
+	    	return Stream.of(
+	    			Arguments.of("aaaabbbbcccc","abccbaabccba"),
+	    			Arguments.of("rat","art"),
+	    			Arguments.of("leetcode","cdelotee"),
+	    			Arguments.of("ggggggg","ggggggg"),
+	    			Arguments.of("spo","ops")
+	    			);
+	   }
+	    
+	    @DisplayName("Sort Array By Parity")
+	    @ParameterizedTest
+	    @MethodSource("sortArrayByParity")
+	    void testSortString(int[] input, int[] expectedOutput) {
+	    	SortArrayByParity sortArrayByParity = new SortArrayByParity();
+	    	int[] actualOutput = sortArrayByParity.sortArrayByParity(input);
+	    	Assertions.assertArrayEquals(expectedOutput, actualOutput);    	
+	    }
+	    static Stream<Arguments> sortArrayByParity() {
+	    	return Stream.of(
+	    			Arguments.of(new int[] {3,1,2,4},new int[] {2,4,3,1}),
+	    			Arguments.of(new int[] {1},new int[] {1}),
+	    			Arguments.of(new int[] {0,2,1},new int[] {0,2,1})
+	    			);
+	   }
+	   
+	    @DisplayName("Replace Greatest Element")
+	    @ParameterizedTest
+	    @MethodSource("replaceElements")
+	    void testReplaceElements(int[] input, int[] expectedOutput) {
+	    	ReplaceGreatestElement replaceGreatestElement = new ReplaceGreatestElement();
+	    	int[] actualOutput = replaceGreatestElement.replaceElements(input);
+	    	Assertions.assertArrayEquals(expectedOutput, actualOutput);    	
+	    }
+	    static Stream<Arguments> replaceElements() {
+	    	return Stream.of(
+	    			Arguments.of(new int[] {17,18,5,4,6,1},new int[] {18,6,6,6,1,-1}),
+	    			Arguments.of(new int[] {400},new int[] {-1})
+	    			);
+	   }
+	    
+	    @DisplayName("Find Prefix In Sentence")
+	    @ParameterizedTest
+	    @MethodSource("isPrefixOfWord")
+	    void testIsPrefixOfWord(String input, String input1, int expectedOutput) {
+	    	FindPrefixInSentence findPrefixInSentence = new FindPrefixInSentence();
+	    	int actualOutput = findPrefixInSentence.isPrefixOfWord(input, input1);
+	    	Assertions.assertEquals(expectedOutput, actualOutput);    	
+	    }
+	    static Stream<Arguments> isPrefixOfWord() {
+	    	return Stream.of(
+	    			Arguments.of("i love eating burger","burg",4),
+	    			Arguments.of("this problem is an easy problem","pro",2),
+	    			Arguments.of("i am tired","you",-1),
+	    			Arguments.of("i use triple pillow","pill",4),
+	    			Arguments.of("hello from the other side","they",-1),
+	    			Arguments.of("hellohello hellohellohello","ell",-1)
+	    			);
+	   }
+	    
 	// Util Methods 
 	    public static ListNode convertArrayToList(int[] input){
 			ListNode head = null;
 			ListNode ln = null;
-			//for(int i=1; i<=input.length; i++) {
 			for(int value : input) {
 				if(head==null) {
 					head = new ListNode(input[0]);
@@ -388,6 +474,14 @@ public class AppTest
 				
 			}
 			return head;
+		}    
+	    
+	    public static List<Integer> convertArrayToArrayList(int[] input){
+			List<Integer> arrayToAL = new ArrayList<Integer>();
+			for(int value : input) {
+				arrayToAL.add(value);
+			}
+			return arrayToAL;
 		}    
     
 }
