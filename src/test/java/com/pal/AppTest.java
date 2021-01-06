@@ -32,11 +32,13 @@ import com.pal.intops.ReplaceGreatestElement;
 import com.pal.intops.SelfDividingNumbers;
 import com.pal.intops.SortArrayByParity;
 import com.pal.stringops.ChangeCase;
+import com.pal.stringops.DIStringMatch;
 import com.pal.stringops.DetermineAlikeStringHalves;
 import com.pal.stringops.FindPrefixInSentence;
 import com.pal.stringops.MaximumNestingDepth;
 import com.pal.stringops.ShuffleString;
 import com.pal.stringops.SplitBalancedStrings;
+import com.pal.stringops.UncommonWordsIIn2Sentences;
 import com.pal.stringops.UniqueMorseCodeWords;
 import com.pal.utils.ListNode;
 
@@ -456,6 +458,37 @@ public class AppTest
 	    			Arguments.of("i use triple pillow","pill",4),
 	    			Arguments.of("hello from the other side","they",-1),
 	    			Arguments.of("hellohello hellohellohello","ell",-1)
+	    			);
+	   }
+	    
+	    @DisplayName("DI String Match")
+	    @ParameterizedTest
+	    @MethodSource("diStringMatch")
+	    void testDiStringMatch(String input, int[] expectedOutput) {
+	    	DIStringMatch dIStringMatch = new DIStringMatch();
+	    	int[] actualOutput = dIStringMatch.diStringMatch(input);
+	    	Assertions.assertArrayEquals(expectedOutput, actualOutput);    	
+	    }
+	    static Stream<Arguments> diStringMatch() {
+	    	return Stream.of(
+	    			Arguments.of("IDID",new int[] {0,4,1,3,2}),
+	    			Arguments.of("III",new int[] {0,1,2,3}),
+	    			Arguments.of("DDI",new int[] {3,2,0,1})
+	    			);
+	   }
+	    
+	    @DisplayName("Uncommon Words In 2 Sentences")
+	    @ParameterizedTest
+	    @MethodSource("uncommonFromSentences")
+	    void testDiStringMatch(String input, String input2, String[] expectedOutput) {
+	    	UncommonWordsIIn2Sentences uncommonWordsIIn2Sentences = new UncommonWordsIIn2Sentences();
+	    	String[] actualOutput = uncommonWordsIIn2Sentences.uncommonFromSentences(input, input2);
+	    	Assertions.assertArrayEquals(expectedOutput, actualOutput);    	
+	    }
+	    static Stream<Arguments> uncommonFromSentences() {
+	    	return Stream.of(
+	    			Arguments.of("this apple is sweet", "this apple is sour", new String[] {"sweet","sour"}),
+	    			Arguments.of("apple apple", "banana", new String[] {"banana"})
 	    			);
 	   }
 	    
