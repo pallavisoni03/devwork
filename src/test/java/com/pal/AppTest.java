@@ -31,11 +31,14 @@ import com.pal.intops.ReduceNumberToZero;
 import com.pal.intops.ReplaceGreatestElement;
 import com.pal.intops.SelfDividingNumbers;
 import com.pal.intops.SortArrayByParity;
+import com.pal.intops.SquaresofSortedArray;
 import com.pal.stringops.ChangeCase;
 import com.pal.stringops.DIStringMatch;
 import com.pal.stringops.DetermineAlikeStringHalves;
 import com.pal.stringops.FindPrefixInSentence;
+import com.pal.stringops.FizzBuzz;
 import com.pal.stringops.MaximumNestingDepth;
+import com.pal.stringops.ReverseWordsInString;
 import com.pal.stringops.ShuffleString;
 import com.pal.stringops.SplitBalancedStrings;
 import com.pal.stringops.UncommonWordsIIn2Sentences;
@@ -492,6 +495,49 @@ public class AppTest
 	    			);
 	   }
 	    
+	    @DisplayName("Squares of Sorted Array")
+	    @ParameterizedTest
+	    @MethodSource("sortedSquares")
+	    void testSortedSquares(int[] input, int[] expectedOutput) {
+	    	SquaresofSortedArray squaresofSortedArray = new SquaresofSortedArray();
+	    	int[] actualOutput = squaresofSortedArray.sortedSquares(input);
+	    	Assertions.assertArrayEquals(expectedOutput, actualOutput);    	
+	    }
+	    static Stream<Arguments> sortedSquares() {
+	    	return Stream.of(
+	    			Arguments.of(new int[] {-4,-1,0,3,10}, new int[] {0,1,9,16,100}),
+	    			Arguments.of(new int[] {7,-3,2,3,11}, new int[] {4,9,9,49,121})
+	    			);
+	   }
+	    
+	    @DisplayName("Reverse Words In String")
+	    @ParameterizedTest
+	    @MethodSource("reverseWords")
+	    void testReverseWords(String input, String expectedOutput) {
+	    	ReverseWordsInString reverseWordsInString = new ReverseWordsInString();
+	    	String actualOutput = reverseWordsInString.reverseWords(input);
+	    	Assertions.assertEquals(expectedOutput, actualOutput);    	
+	    }
+	    static Stream<Arguments> reverseWords() {
+	    	return Stream.of(
+	    			Arguments.of("Let's take LeetCode contest", "s'teL ekat edoCteeL tsetnoc")
+	    			);
+	   }
+	    
+	    @DisplayName("Fizz Buzz")
+	    @ParameterizedTest
+	    @MethodSource("fizzBuzz")
+	    void testFizzBuzz(int input, List<String> expectedOutput) {
+	    	FizzBuzz fizzbuzz = new FizzBuzz();
+	    	List<String> actualOutput = fizzbuzz.fizzBuzz(input);
+	    	Assertions.assertEquals(expectedOutput, actualOutput);    	
+	    }
+	    static Stream<Arguments> fizzBuzz() {
+	    	return Stream.of(
+	    			Arguments.of(15, convertArrayToArrayListStr(new String[]{"1","2","Fizz","4","Buzz","Fizz","7","8","Fizz","Buzz","11","Fizz","13","14","FizzBuzz"}))
+	    			);
+	   }
+	    
 	// Util Methods 
 	    public static ListNode convertArrayToList(int[] input){
 			ListNode head = null;
@@ -512,6 +558,14 @@ public class AppTest
 	    public static List<Integer> convertArrayToArrayList(int[] input){
 			List<Integer> arrayToAL = new ArrayList<Integer>();
 			for(int value : input) {
+				arrayToAL.add(value);
+			}
+			return arrayToAL;
+		}   
+	    
+	    public static List<String> convertArrayToArrayListStr(String[] input){
+			List<String> arrayToAL = new ArrayList<String>();
+			for(String value : input) {
 				arrayToAL.add(value);
 			}
 			return arrayToAL;
