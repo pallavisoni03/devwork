@@ -22,10 +22,12 @@ import com.pal.intops.DecompressEncodedList;
 import com.pal.intops.DesignParkingSystem;
 import com.pal.intops.DiffProductSumofDigits;
 import com.pal.intops.EvenNumberOfDigits;
+import com.pal.intops.FindArrayLuckyInteger;
 import com.pal.intops.GreatestNumberoFCandies;
 import com.pal.intops.HammingDistance;
 import com.pal.intops.IncreasingDecreasingString;
 import com.pal.intops.Maximum69Number;
+import com.pal.intops.MissingNumber;
 import com.pal.intops.NumberOfGoodPairs;
 import com.pal.intops.ReduceNumberToZero;
 import com.pal.intops.ReplaceGreatestElement;
@@ -38,6 +40,7 @@ import com.pal.stringops.DetermineAlikeStringHalves;
 import com.pal.stringops.FindPrefixInSentence;
 import com.pal.stringops.FizzBuzz;
 import com.pal.stringops.MaximumNestingDepth;
+import com.pal.stringops.RemovePalindromicSubsequences;
 import com.pal.stringops.ReverseWordsInString;
 import com.pal.stringops.ShuffleString;
 import com.pal.stringops.SplitBalancedStrings;
@@ -538,6 +541,58 @@ public class AppTest
 	    			);
 	   }
 	    
+	    @DisplayName("Find Array Lucky Integer")
+	    @ParameterizedTest
+	    @MethodSource("findLucky")
+	    void testFindLucky(int[] input, int expectedOutput) {
+	    	FindArrayLuckyInteger findArrayLuckyInteger = new FindArrayLuckyInteger();
+	    	int actualOutput = findArrayLuckyInteger.findLucky(input);
+	    	Assertions.assertEquals(expectedOutput, actualOutput);    	
+	    }
+	    static Stream<Arguments> findLucky() {
+	    	return Stream.of(
+	    			Arguments.of(new int[]{2,2,3,4}, 2),
+	    			Arguments.of(new int[]{1,2,2,3,3,3}, 3),
+	    			Arguments.of(new int[]{2,2,2,3,3}, -1),	
+	    			Arguments.of(new int[]{5}, -1),		
+	    			Arguments.of(new int[]{7,7,7,7,7,7,7}, 7)
+	    			);
+	    	}
+	    
+	    @DisplayName("Remove Palindromic Subsequences")
+	    @ParameterizedTest
+	    @MethodSource("removePalindromeSub")
+	    void testFindLucky(String input, int expectedOutput) {
+	    	RemovePalindromicSubsequences removePalindromicSubsequences = new RemovePalindromicSubsequences();
+	    	int actualOutput = removePalindromicSubsequences.removePalindromeSub(input);
+	    	Assertions.assertEquals(expectedOutput, actualOutput);    	
+	    	}
+	    static Stream<Arguments> removePalindromeSub() {
+	    	return Stream.of(
+	    			Arguments.of("ababa" , 1),
+	    			Arguments.of("abb" , 2),
+	    			Arguments.of("baabb" , 2),	
+	    			Arguments.of("" , 0)
+	    			);
+	    	} 
+	    
+	    @DisplayName("Missing Number")
+	    @ParameterizedTest
+	    @MethodSource("missingNumber")
+	    void testMissingNumber(int[] input, int expectedOutput) {
+	    	MissingNumber missingNumber = new MissingNumber();
+	    	int actualOutput = missingNumber.missingNumber(input);
+	    	Assertions.assertEquals(expectedOutput, actualOutput);    	
+	    	}
+	    static Stream<Arguments> missingNumber() {
+	    	return Stream.of(
+	    			Arguments.of(new int[]{3,0,1} , 2),
+	    			Arguments.of(new int[]{0,1} , 2),
+	    			Arguments.of(new int[]{9,6,4,2,3,5,7,0,1} , 8),
+	    			Arguments.of(new int[]{0} , 1)
+	    			);
+	    	} 
+	   
 	// Util Methods 
 	    public static ListNode convertArrayToList(int[] input){
 			ListNode head = null;
