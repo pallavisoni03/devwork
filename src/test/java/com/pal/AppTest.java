@@ -18,6 +18,7 @@ import com.pal.intops.ArrayXOROperation;
 import com.pal.intops.ConvertLLBinaryNumber;
 import com.pal.intops.CountConsistentStrings;
 import com.pal.intops.CreateTargetArray;
+import com.pal.intops.DecodeXORedArray;
 import com.pal.intops.DecompressEncodedList;
 import com.pal.intops.DesignParkingSystem;
 import com.pal.intops.DiffProductSumofDigits;
@@ -29,13 +30,16 @@ import com.pal.intops.IncreasingDecreasingString;
 import com.pal.intops.Maximum69Number;
 import com.pal.intops.MissingNumber;
 import com.pal.intops.NumberOfGoodPairs;
+import com.pal.intops.RangeSumofBST;
 import com.pal.intops.ReduceNumberToZero;
 import com.pal.intops.ReplaceGreatestElement;
 import com.pal.intops.SelfDividingNumbers;
+import com.pal.intops.SingleNumber;
 import com.pal.intops.SortArrayByParity;
 import com.pal.intops.SquaresofSortedArray;
 import com.pal.stringops.ChangeCase;
 import com.pal.stringops.DIStringMatch;
+import com.pal.stringops.DecryptAlphabetInteger;
 import com.pal.stringops.DetermineAlikeStringHalves;
 import com.pal.stringops.FindPrefixInSentence;
 import com.pal.stringops.FizzBuzz;
@@ -44,9 +48,13 @@ import com.pal.stringops.RemovePalindromicSubsequences;
 import com.pal.stringops.ReverseWordsInString;
 import com.pal.stringops.ShuffleString;
 import com.pal.stringops.SplitBalancedStrings;
+import com.pal.stringops.StringMatchingInArray;
 import com.pal.stringops.UncommonWordsIIn2Sentences;
 import com.pal.stringops.UniqueMorseCodeWords;
+import com.pal.utils.ConvertArrayToBST;
 import com.pal.utils.ListNode;
+import com.pal.utils.TreeNode;
+
 
 /**
  * Unit test for simple App.
@@ -590,6 +598,86 @@ public class AppTest
 	    			Arguments.of(new int[]{0,1} , 2),
 	    			Arguments.of(new int[]{9,6,4,2,3,5,7,0,1} , 8),
 	    			Arguments.of(new int[]{0} , 1)
+	    			);
+	    	} 
+	    
+	    @DisplayName("Decode XORed Array")
+	    @ParameterizedTest
+	    @MethodSource("decode")
+	    void testDecode(int[] input, int input1, int[] expectedOutput) {
+	    	DecodeXORedArray decodeXORedArray = new DecodeXORedArray();
+	    	int[] actualOutput = decodeXORedArray.decode(input, input1);
+	    	Assertions.assertArrayEquals(expectedOutput, actualOutput);    	
+	    	}
+	    static Stream<Arguments> decode() {
+	    	return Stream.of(
+	    			Arguments.of(new int[]{1,2,3} , 1, new int[] {1,0,2,1}),
+	    			Arguments.of(new int[]{6,2,7,3} , 4, new int[] {4,2,0,7,4})
+	    			);
+	    	} 
+	    
+	    @DisplayName("Decrypt Alphabet Integer")
+	    @ParameterizedTest
+	    @MethodSource("freqAlphabets")
+	    void testFreqAlphabets(String input, String expectedOutput) {
+	    	DecryptAlphabetInteger decryptAlphabetInteger = new DecryptAlphabetInteger();
+	    	String actualOutput = decryptAlphabetInteger.freqAlphabets(input);
+	    	Assertions.assertEquals(expectedOutput, actualOutput);    	
+	    	}
+	    static Stream<Arguments> freqAlphabets() {
+	    	return Stream.of(
+	    			Arguments.of("10#11#12","jkab"),
+	    			Arguments.of("1326#","acz"),
+	    			Arguments.of("25#","y"),
+	    			Arguments.of("12345678910#11#12#13#14#15#16#17#18#19#20#21#22#23#24#25#26#","abcdefghijklmnopqrstuvwxyz")
+	    			);
+	    	} 
+	    
+	    @DisplayName("Single Number")
+	    @ParameterizedTest
+	    @MethodSource("singleNumber")
+	    void testSingleNumber(int[] input, int expectedOutput) {
+	    	SingleNumber singleNumber = new SingleNumber();
+	    	int actualOutput = singleNumber.singleNumber(input);
+	    	Assertions.assertEquals(expectedOutput, actualOutput);    	
+	    	}
+	    static Stream<Arguments> singleNumber() {
+	    	return Stream.of(
+	    			Arguments.of(new int[]{2,2,1},1),
+	    			Arguments.of(new int[]{4,1,2,1,2},4),
+	    			Arguments.of(new int[]{1},1)
+	    			);
+	    	} 
+	    
+	  @DisplayName("String Matching In Array")
+	    @ParameterizedTest
+	    @MethodSource("stringMatching")
+	    void testStringMatching(String[] input, List<String> expectedOutput) {
+	    	StringMatchingInArray stringMatchingInArray = new StringMatchingInArray();
+	    	List<String> actualOutput = stringMatchingInArray.stringMatching(input);
+	    	Assertions.assertEquals(expectedOutput, actualOutput);    	
+	    	}
+	    static Stream<Arguments> stringMatching() {
+	    	return Stream.of(
+	    			Arguments.of(new String[]{"mass","as","hero","superhero"},convertArrayToArrayListStr(new String[]{"as","hero"})),
+	    			Arguments.of(new String[]{"leetcode","et","code"},convertArrayToArrayListStr(new String[]{"et","code"})),
+	    			Arguments.of(new String[]{"blue","green","bu"},convertArrayToArrayListStr(new String[]{}))
+	    			);
+	    	} 
+	    
+	    @DisplayName("Range Sum of BST")
+	    @ParameterizedTest
+	    @MethodSource("rangeSumBST")
+	    void testRangeSumBST(TreeNode input, int input1, int input2, int expectedOutput) {
+	    	RangeSumofBST rangeSumofBST = new RangeSumofBST();
+	    	int actualOutput = rangeSumofBST.rangeSumBST(input, input1, input2);
+	    	Assertions.assertEquals(expectedOutput, actualOutput);    	
+	    	}
+	    static Stream<Arguments> rangeSumBST() {
+	    	return Stream.of(
+	    			Arguments.of(new ConvertArrayToBST().convertArrayToBST(new Integer[]{10,5,15,3,7,null,18}), 7, 15, 32),
+	    			Arguments.of(new ConvertArrayToBST().convertArrayToBST(new Integer[]{10,5,15,3,7,13,18,1,null,6}), 6, 10, 23),
+	    			Arguments.of(new ConvertArrayToBST().convertArrayToBST(new Integer[]{15,9,21,7,13,19,23,5,null,11,null,17}), 19, 21, 40)
 	    			);
 	    	} 
 	   
