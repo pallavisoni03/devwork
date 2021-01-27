@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
+import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -33,11 +34,13 @@ import com.pal.intops.NumberOfGoodPairs;
 import com.pal.intops.RangeSumofBST;
 import com.pal.intops.ReduceNumberToZero;
 import com.pal.intops.ReplaceGreatestElement;
+import com.pal.intops.SearchBinarySearchTree;
 import com.pal.intops.SelfDividingNumbers;
 import com.pal.intops.SingleNumber;
 import com.pal.intops.SortArrayByParity;
 import com.pal.intops.SquaresofSortedArray;
 import com.pal.stringops.ChangeCase;
+import com.pal.stringops.ConstructStringfromBinaryTree;
 import com.pal.stringops.DIStringMatch;
 import com.pal.stringops.DecryptAlphabetInteger;
 import com.pal.stringops.DetermineAlikeStringHalves;
@@ -680,6 +683,40 @@ public class AppTest
 	    			Arguments.of(new ConvertArrayToBST().convertArrayToBST(new Integer[]{15,9,21,7,13,19,23,5,null,11,null,17}), 19, 21, 40)
 	    			);
 	    	} 
+	    
+	    
+	    @DisplayName("Construct String from Binary Tree")
+	    @ParameterizedTest
+	    @MethodSource("tree2str")
+	    void testTree2str(TreeNode input, String expectedOutput) {
+	    	ConstructStringfromBinaryTree constructStringfromBinaryTree = new ConstructStringfromBinaryTree();
+	    	String actualOutput = constructStringfromBinaryTree.tree2str(input);
+	    	Assertions.assertEquals(expectedOutput, actualOutput);    	
+	    	}
+	    static Stream<Arguments> tree2str() {
+	    	return Stream.of(
+	    			Arguments.of(new ConvertArrayToBST().convertArrayToBST(new Integer[]{1,2,3,4}), "1(2(4))(3)"),
+	    			Arguments.of(new ConvertArrayToBST().convertArrayToBST(new Integer[]{1,2,3,null,4}), "1(2()(4))(3)")
+	    			);
+	    	} 
+	    
+	    @DisplayName("Search Binary Search Tree")
+	    @ParameterizedTest
+	    @MethodSource("searchBST")
+	    void testSearchBST(TreeNode input, int input1 ,TreeNode expectedOutput) {
+	    	SearchBinarySearchTree searchBinarySearchTree = new SearchBinarySearchTree();
+	    	//List<Integer> actualOutput = dlrTraversals(searchBinarySearchTree.searchBST(input, input1));
+	    	TreeNode actualOutput = searchBinarySearchTree.searchBST(input, input1);
+	    	Assert.assertEquals(expectedOutput, actualOutput);    	
+	    	}
+	    static Stream<Arguments> searchBST() {
+	    	return Stream.of(
+	    	  //Arguments.of(new ConvertArrayToBST().convertArrayToBST(new Integer[]{4,2,7,1,3}),2,new ConvertArrayToBST().convertArrayToBST(new Integer[]{2,1,3}))
+	    	 Arguments.of(new ConvertArrayToBST().convertArrayToBST(new Integer[]{4,2,7,1,3}),5,new ConvertArrayToBST().convertArrayToBST(new Integer[]{}))
+	    	);
+	     } 
+	   
+	    
 	   
 	// Util Methods 
 	    public static ListNode convertArrayToList(int[] input){
@@ -713,5 +750,16 @@ public class AppTest
 			}
 			return arrayToAL;
 		}    
+	    
+	    public static List<Integer> dlrTraversals(TreeNode node) {
+	    	List<Integer> treeToAL = new ArrayList<Integer>();
+			if(node!=null) {
+				//System.out.print(node.val);
+				treeToAL.add(node.val);
+				dlrTraversals(node.left);
+				dlrTraversals(node.right);
+			}
+			return treeToAL;
+		}
     
 }

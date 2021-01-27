@@ -5,7 +5,7 @@ import com.pal.utils.Node;
 public class BinaryTreeTraversals {
 
 	Node root;
-	BinaryTreeTraversals() {
+	public BinaryTreeTraversals() {
 		root =null;
 	}
 	public static void main(String[] args) {
@@ -16,13 +16,13 @@ public class BinaryTreeTraversals {
 			binaryTreeTraversals.root.left.left = new Node(4);
 			binaryTreeTraversals.root.left.right = new Node(5);
 			
-			System.out.println("-----------LDR---------");
+			System.out.println("-----------LDR-----Preorder------");
 			binaryTreeTraversals.ldrTraversals(binaryTreeTraversals.root);
 			System.out.print("\n");
-			System.out.println("-----------LRD---------");
+			System.out.println("-----------LRD-----Inorder-----");
 			binaryTreeTraversals.lrdTraversals(binaryTreeTraversals.root);
 			System.out.print("\n");
-			System.out.println("-----------DLR---------");
+			System.out.println("-----------DLR-----Postorder----");
 			binaryTreeTraversals.dlrTraversals(binaryTreeTraversals.root);
 			System.out.print("\n");
 		

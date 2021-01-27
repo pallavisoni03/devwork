@@ -1,6 +1,6 @@
 package com.pal.intops;
 
-public class runningSum {
+public class RunningSum {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
