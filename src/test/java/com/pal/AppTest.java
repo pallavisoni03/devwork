@@ -39,6 +39,7 @@ import com.pal.intops.SelfDividingNumbers;
 import com.pal.intops.SingleNumber;
 import com.pal.intops.SortArrayByParity;
 import com.pal.intops.SquaresofSortedArray;
+import com.pal.intops.SumOddLenSubarrays;
 import com.pal.stringops.ChangeCase;
 import com.pal.stringops.ConstructStringfromBinaryTree;
 import com.pal.stringops.DIStringMatch;
@@ -54,6 +55,7 @@ import com.pal.stringops.SplitBalancedStrings;
 import com.pal.stringops.StringMatchingInArray;
 import com.pal.stringops.UncommonWordsIIn2Sentences;
 import com.pal.stringops.UniqueMorseCodeWords;
+import com.pal.stringops.ValidAnagram;
 import com.pal.utils.ConvertArrayToBST;
 import com.pal.utils.ListNode;
 import com.pal.utils.TreeNode;
@@ -715,7 +717,38 @@ public class AppTest
 	    	 Arguments.of(new ConvertArrayToBST().convertArrayToBST(new Integer[]{4,2,7,1,3}),5,new ConvertArrayToBST().convertArrayToBST(new Integer[]{}))
 	    	);
 	     } 
+	    
+	    
+	    @DisplayName("Valid Anagram")
+	    @ParameterizedTest
+	    @MethodSource("isAnagram")
+	    void testIsAnagram(String input, String input1 ,boolean expectedOutput) {
+	    	ValidAnagram validAnagram = new ValidAnagram();
+	    	boolean actualOutput = validAnagram.isAnagram(input, input1);
+	    	Assert.assertEquals(expectedOutput, actualOutput);    	
+	    	}
+	    static Stream<Arguments> isAnagram() {
+	    	return Stream.of(
+	    	  Arguments.of("anagram","nagaram",true),
+	    	  Arguments.of("rat", "car", false)
+	    	);
+	     } 
 	   
+	    @DisplayName("Sum Odd Len Subarrays")
+	    @ParameterizedTest
+	    @MethodSource("sumOddLengthSubarrays")
+	    void testSumOddLengthSubarrays(int[] input1, int expectedOutput) {
+	    	SumOddLenSubarrays sumOddLenSubarrays = new SumOddLenSubarrays();
+	    	int actualOutput = sumOddLenSubarrays.sumOddLengthSubarrays(input1);
+	    	Assert.assertEquals(expectedOutput, actualOutput);    	
+	    	}
+	    static Stream<Arguments> sumOddLengthSubarrays() {
+	    	return Stream.of(
+	    	  Arguments.of(new int[]{1,4,2,5,3},58),
+	    	  Arguments.of(new int[]{1,2},3),
+	    	  Arguments.of(new int[]{10,11,12},66)
+	    	);
+	     } 
 	    
 	   
 	// Util Methods 
