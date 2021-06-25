@@ -1,5 +1,6 @@
 package com.pal.intops;
 import com.pal.utils.ListNode;
+import com.pal.utils.UtilMethods;
 
 public class ConvertLLBinaryNumber {
 
@@ -21,7 +22,7 @@ public class ConvertLLBinaryNumber {
 		//ListNode head = new ConvertLLBinaryNumber().createListList(new int[] {1,0,1});
 		//ListNode head = new ConvertLLBinaryNumber().createListList(new int[] {0});
 		//ListNode head = new ConvertLLBinaryNumber().createListList(new int[] {1});
-		ListNode head = new ConvertLLBinaryNumber().createListList(new int[] {0,0});
+		ListNode head = new UtilMethods().createListList(new int[] {0,0});
 		ListNode newHead = head; 
 		while (head!=null) { 
 			System.out.print(head.val+",");
@@ -65,21 +66,7 @@ public class ConvertLLBinaryNumber {
 	 */
 	// Definition for singly-linked list.
 	  
-	public ListNode createListList(int[] input){
-		ListNode head = null;
-		ListNode ln = null;
-		//for(int i=1; i<=input.length; i++) {
-		for(int value : input) {
-			if(head==null) {
-				head = new ListNode(input[0]);
-				ln = head;
-			 }else {
-				 ln.next = new ListNode(value);
-				 ln = ln.next;
-			 }		
-		}
-		return head;
-	}    
+
 }
 
 

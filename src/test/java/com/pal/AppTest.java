@@ -34,6 +34,7 @@ import com.pal.intops.NumberOfGoodPairs;
 import com.pal.intops.RangeSumofBST;
 import com.pal.intops.ReduceNumberToZero;
 import com.pal.intops.ReplaceGreatestElement;
+import com.pal.intops.ReverseLinkedList;
 import com.pal.intops.SearchBinarySearchTree;
 import com.pal.intops.SelfDividingNumbers;
 import com.pal.intops.SingleNumber;
