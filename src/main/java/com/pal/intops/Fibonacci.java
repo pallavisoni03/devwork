@@ -5,28 +5,29 @@ public class Fibonacci {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-   int numberTill = 2;//2;
+   int numberTill = 10;//2;
 	 if(numberTill > 0){
-		System.out.println("Fibonacci series from recursion--->");	
+		//System.out.println("Fibonacci series from recursion--->");	
 		if(numberTill == 1 ){
-			System.out.print("1 ");
+			//System.out.print("1 ");
 		}
 		if (numberTill == 2){
-		    System.out.print("1 1 ");
+		   // System.out.print("1 1 ");
 		}else{
-			System.out.print("1 1 ");
+			//System.out.print("1 1 ");
 			for(int i=3; i<=numberTill;i++){
-				System.out.print(genTheNumRecu(i)+" ");
+				//System.out.print(genTheNumRecu(i)+" ");
 			}
 		}//else
 			System.out.println(" ");	
-		System.out.println("Fibonacci series from regular method--->");
+		//System.out.println("Fibonacci series from regular method--->");
 			for(int nums: genTheNum(numberTill)){
-			System.out.print(nums+" ");
+			//System.out.print(nums+" ");
 			}
 		}else{
-			System.out.println("0");
+			//System.out.println("0");
 		}
+	 	new Fibonacci().feboNew(numberTill);
 	}
 
 	// recursion method
@@ -67,6 +68,17 @@ public class Fibonacci {
 
 		}
 
+	}
+	
+	public void feboNew(int numberTill) {
+		int n = 0, n1 = 1;
+		System.out.println(n1);
+		for(int i = 2; i<numberTill; i++) {
+			int n3 = n + n1;
+			System.out.println(n3);
+			n = n1;
+			n1 = n3;
+		}
 	}
 
 }

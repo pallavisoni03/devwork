@@ -8,8 +8,11 @@ public class BinarySearch {
 
 		int[] nums = {-1,0,3,5,9,12};//{-1,0,3,5,9,12};
 		int target = 12;
-		int result = new BinarySearch().binarySearchimpl(nums, target);
-		System.out.println(result);
+		//int result = new BinarySearch().binarySearchimpl(nums, target);
+		//System.out.println(result);
+		
+		int resultRec = new BinarySearch().binarySearchimplRec(nums, target, 0, nums.length-1);
+		System.out.println(resultRec);
 		
 	}
 
@@ -26,6 +29,23 @@ public class BinarySearch {
 		}		
 				
 		return -1;
+	}
+	
+	public int binarySearchimplRec(int[] arr, int target, int start, int end) {
+		
+		int mid = start + (end - start) / 2;
+		
+			 if(arr[mid] == target) {
+				 return mid;
+			 }
+		 
+			if(target < arr[mid]) {
+				return binarySearchimplRec(arr, target, start , mid - 1);
+				}
+			else {
+				return binarySearchimplRec(arr, target, mid + 1 , end);
+			}
+			
 	}
 	
 }

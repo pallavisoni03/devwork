@@ -24,8 +24,7 @@ public class BinaryTreeTraversals {
 			System.out.print("\n");
 			System.out.println("-----------DLR-----Postorder----");
 			binaryTreeTraversals.dlrTraversals(binaryTreeTraversals.root);
-			System.out.print("\n");
-		
+			System.out.print("\n");		
 		}
 	
 		public void ldrTraversals(Node node) {
